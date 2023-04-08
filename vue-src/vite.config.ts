@@ -29,12 +29,12 @@ export default defineConfig({
     // library 化タスク
     lib: {
       // 複数のエントリーポイントのディクショナリや配列にもできます
-      entry: resolve(__dirname, 'src/main.js'),
-      name: 'ExampleVueLib',
+      entry: resolve(__dirname, 'src/main.ts'),
+      name: 'ExampleVueRouterLib',
       // 適切な拡張子が追加されます
-      fileName: 'my-lib',
-      // umd,
-      formats: ['umd', 'esm', 'amd'],
+      fileName: 'my-vue-router-lib',
+      // es moduleとして出力するようにする,
+      formats: ['es'],
     },
     // rollupOptions: {
     //   // ライブラリにバンドルされるべきではない依存関係を
