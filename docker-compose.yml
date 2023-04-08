@@ -1,0 +1,21 @@
+# docker compose yml としての書き方の バージョン
+version: '3.8'
+
+# 立てるコンテナ一覧
+services:
+  # vueだけで構成のページ
+  vue:
+    # 管理コンテナ名
+    container_name: ${APP_NAME}-vue
+    # Dockerファイルにて定義
+    build: 
+        context: .
+        dockerfile: ./docker/vue/Dockerfile
+    # 場所
+    volumes:
+      - ./vue-src/:/var/www/html
+    # PORT = for watch
+    ports: 
+      - ${VUE_VITE_DEV:-3000}:5173
+    # コンテナを正常終了するのを防ぐ
+    tty: true
