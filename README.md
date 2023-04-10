@@ -6,6 +6,7 @@ vite + vue + vue routerでesm jsビルドしただけの資材でどうなるか
 - esm.jsの単品で配布できたら (最悪 nodejs上で動く リバースプロキシのサイト)
 - 入力フォームの登録先APIへの通信
 - FormKitでフォーム実現
+- [デザイン参考](https://vue-now-ui-dashboard-laravel.creative-tim.com/login)
 
 # 構成
 |使うもの|用途|
@@ -13,6 +14,7 @@ vite + vue + vue routerでesm jsビルドしただけの資材でどうなるか
 |vue|SPA|
 |vue-router|画面切り替えは存在するので|
 |FormKit vue|フォームのなんか|
+|vuex|画面ごとにフォームの内容を保存しておく先？|
 |laravel|vueで実現した入力フォームの 登録通信先のAPI|
 |nginx + 何か|esm.jsを配布した先で動くサイト|
 
