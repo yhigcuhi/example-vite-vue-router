@@ -9,14 +9,14 @@ vite + vue + vue routerでesm jsビルドしただけの資材でどうなるか
 - [デザイン参考](https://vue-now-ui-dashboard-laravel.creative-tim.com/login)
 
 # 構成
-|使うもの|用途|
-|:---|:---|
-|vue|SPA|
-|vue-router|画面切り替えは存在するので|
-|FormKit vue|フォームのなんか|
-|vuex|画面ごとにフォームの内容を保存しておく先？|
-|laravel|vueで実現した入力フォームの 登録通信先のAPI|
-|nginx + 何か|esm.jsを配布した先で動くサイト|
+| 使うもの        | 用途                      |
+|:------------|:------------------------|
+| vue         | SPA                     |
+| vue-router  | 画面切り替えは存在するので           |
+| FormKit vue | フォームのなんか                |
+| pinia       | 画面ごとにフォームの内容を保存しておく先    |
+| laravel     | vueで実現した入力フォームの 登録通信先のAPI|
+| nginx + 何か  | esm.jsを配布した先で動くサイト      |
 
 ## 一旦の資材構成
 /vue-src (vite vueで作成した　実験する vueのプロジェクト)

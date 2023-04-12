@@ -1,6 +1,6 @@
 // 画面の 集約ファイル
-import EntryForm from '@/pages/multipart-form/EntryForm.vue';
-import SecondForm from '@/pages/multipart-form/SecondForm.vue';
+import EntryForm from '@/pages/multi-step-form/EntryForm.vue';
+import SecondForm from '@/pages/multi-step-form/SecondForm.vue';
 
 // export
 export {

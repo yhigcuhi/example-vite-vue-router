@@ -3,7 +3,7 @@
 import {useRouter} from 'vue-router';
 /* import parts*/
 import {InputName, InputNameKana, InputEMail, FormGroup} from './components/form';
-import {MultipartFormLayout} from './components/layouts';
+import {MultiStepFormLayout} from './components/layouts';
 
 // TODO:グローバルストア => フォーム初期値
 
@@ -16,15 +16,17 @@ const router = useRouter();
  * @param data 正常登録値
  */
 const onSubmit = async (data: object) => {
-    console.log('1ページ目 次へ', data);
+    console.log('2ページ目', data);
     // グローバルストレージ保存
     // await store.dispatch('updateForm', data);
     // 成功
-    await router.push({name: 'second'});
+    // await router.push({name: 'final'});
 }
+
+const onClickPrevious = async () => await router.push({name: 'entry'});
 </script>
 <template>
-    <MultipartFormLayout :step="1" title="はじめの画面" @submit="onSubmit">
+    <MultiStepFormLayout :step="2" title="2番目の画面" @submit="onSubmit" @click-previous="onClickPrevious">
         <!-- フォーム:名前 -->
         <FormGroup label="名前">
             <!-- 名前（姓） -->
@@ -41,7 +43,7 @@ const onSubmit = async (data: object) => {
         </FormGroup>
         <!-- フォーム:メアド -->
         <FormGroup>
-            <InputEMail name="last_name_kana" outer-class="col-3" label="メールアドレス"/>
+            <InputEMail name="email" outer-class="col-3" label="メールアドレス"/>
         </FormGroup>
-    </MultipartFormLayout>
+    </MultiStepFormLayout>
 </template>
