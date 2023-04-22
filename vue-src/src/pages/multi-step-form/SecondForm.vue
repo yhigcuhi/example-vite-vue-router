@@ -2,10 +2,8 @@
 /* import router*/
 import {useRouter} from 'vue-router';
 /* import parts*/
-import {InputName, InputNameKana, InputEMail, FormGroup} from './components/form';
 import {MultiStepFormLayout} from './components/layouts';
-
-// TODO:グローバルストア => フォーム初期値
+import {FormGroup, InputGender, InputBirthday} from './components/form';
 
 // ルーター
 const router = useRouter();
@@ -23,27 +21,20 @@ const onSubmit = async (data: object) => {
     // await router.push({name: 'final'});
 }
 
+/**
+ * 前へ
+ */
 const onClickPrevious = async () => await router.push({name: 'entry'});
 </script>
 <template>
     <MultiStepFormLayout :step="2" title="2番目の画面" @submit="onSubmit" @click-previous="onClickPrevious">
-        <!-- フォーム:名前 -->
-        <FormGroup label="名前">
-            <!-- 名前（姓） -->
-            <InputName name="last_name" outer-class="col-3" validation-label="名前（姓）"/>
-            <!-- 名前（名） -->
-            <InputName name="first_name" outer-class="col-3 ms-4" validation-label="名前（名）"/>
-        </FormGroup>
-        <!-- フォーム:ふりがな -->
-        <FormGroup label="ふりがな">
-            <!-- ふりがな（姓） -->
-            <InputNameKana name="last_name_kana" outer-class="col-3" validation-label="ふりがな（姓）"/>
-            <!-- ふりがな（名） -->
-            <InputNameKana name="first_name_kana" outer-class="col-3 ms-4" validation-label="ふりがな（名）"/>
-        </FormGroup>
-        <!-- フォーム:メアド -->
+        <!-- フォーム:性別 -->
         <FormGroup>
-            <InputEMail name="email" outer-class="col-3" label="メールアドレス"/>
+            <InputGender name="gender" outer-class="col-3" label="性別" help="あてはまる内容を一つお選びください。"/>
+        </FormGroup>
+        <!-- フォーム:生年月日 -->
+        <FormGroup>
+            <InputBirthday name="birthday" outer-class="col-3" label="生年月日" />
         </FormGroup>
     </MultiStepFormLayout>
 </template>

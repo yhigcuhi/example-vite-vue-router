@@ -7,7 +7,7 @@ import 'moment/dist/locale/ja';
 moment.locale('ja');
 // static 日付フォーマット 定数s
 export enum DateFormat {
-    DAY = 'Y-M-D',
+    DAY = 'Y-MM-DD',
 }
 
 /**
@@ -36,3 +36,17 @@ export const parse = (date: MomentInput = new Date()): Date => toMoment(date).to
  * @returns {string} 日付文字列
  */
 export const format = (date: MomentInput = new Date(), format: DateFormat = DateFormat.DAY): string => toMoment(date).format(format);
+
+/**
+ * 現在日 (yyyy-MM-dd形式)
+ * @returns {string} 現在日 (yyyy-MM-dd形式) 文字列
+ */
+export const nowDay = () => format(new Date(), DateFormat.DAY);
+
+/**
+ * 指定日の 指定に数分だけ 年 減算した 日付
+ * @param date 指定日
+ * @param amount 減数年
+ * @return {Date} 指定日の 指定に数分だけ 日 減算した 日付
+ */
+export const subtractYears = (date: MomentInput = new Date(), amount: number = 1): Date => toMoment(date).subtract(amount, 'years').toDate();

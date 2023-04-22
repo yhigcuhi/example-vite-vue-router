@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// 日付(yyyy-MM-dd)入力
 /* import vue*/
 import {computed} from 'vue';
 /* import form kit*/
@@ -19,5 +20,5 @@ const classes = computed(() => ({
 }));
 </script>
 <template>
-    <FormKit :classes="classes" type="text"/>
+    <FormKit :classes="classes" type="date"/>
 </template>

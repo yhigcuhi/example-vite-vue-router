@@ -5,6 +5,8 @@ import {computed, ref} from 'vue';
 import {defineStore} from 'pinia';
 /* import types*/
 import Gender from '@/constants/Gender';
+/* import util*/
+import {DateFormat, format, nowDay, subtractYears} from '@/utils/DateUtil';
 
 // type 定義
 type Form = {
@@ -16,7 +18,6 @@ type Form = {
     gender: Gender|null // 性別
     birthday: string|null, // 生年月日 文字列s
 }
-
 // 内部参照可能定数: フォーム 初期値
 const DEFAULT_FORM: Form = {
     last_name: '',
@@ -25,14 +26,13 @@ const DEFAULT_FORM: Form = {
     first_name_kana: '',
     email: '',
     gender: null,
-    birthday: '2022-2-2',
+    birthday: format(subtractYears(nowDay(), 20), DateFormat.DAY),
 }
 
 // Step形式のフォーム入力内容
 export const useMultiStepForm = defineStore('multi-step-form', () => {
     // state
     const state = ref<Form>(DEFAULT_FORM); // フォームの値
-    const activeStep = ref(1); // 現在のアクティブステップ
     const processing = ref(false); // 送信中 管理 (多重送信防止よう)
     const errors = ref({}); // 通信結果サーバーエラー メッセージ管理
 
@@ -51,24 +51,13 @@ export const useMultiStepForm = defineStore('multi-step-form', () => {
         // 更新結果返却
         return state;
     }
-    /**
-     * Step戻る
-     */
-    const previousStep = () => activeStep.value--;
-    /**
-     * 次のStepへ
-     */
-    const nextStep = () => activeStep.value++;
 
     // export store
     return {
         state,
-        activeStep,
         errors,
         isProcessing,
         updateForm,
-        previousStep,
-        nextStep,
         persist: true // データ永続化 利用
     }
 })
