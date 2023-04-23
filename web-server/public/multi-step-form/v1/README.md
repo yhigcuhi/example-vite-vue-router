@@ -1,0 +1,3 @@
+# このindex.htmlについて...
+vue-srcでビルドしてみた my-vue-router-lib.js のファイルをSPAとして動くかを試す（直リンク可能かどうか含め）WEBサーバー コンテナのアクセス先  
+ディレクトリ構成は vue-routerのbase URLに合わせてみる

@@ -34,7 +34,7 @@ export default defineConfig({
       // 適切な拡張子が追加されます
       fileName: 'my-vue-router-lib',
       // es moduleとして出力するようにする,
-      formats: ['es'],
+      formats: ['es', 'umd'],
     },
     // rollupOptions: {
     //   // ライブラリにバンドルされるべきではない依存関係を

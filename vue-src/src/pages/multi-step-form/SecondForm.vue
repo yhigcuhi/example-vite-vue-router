@@ -11,14 +11,10 @@ const router = useRouter();
 // イベントハンドリング
 /**
  * submit ハンドラー
- * @param data 正常登録値
  */
-const onSubmit = async (data: object) => {
-    console.log('2ページ目', data);
-    // グローバルストレージ保存
-    // await store.dispatch('updateForm', data);
+const onSubmit = async () => {
     // 成功
-    // await router.push({name: 'final'});
+    await router.push({name: 'final'});
 }
 
 /**

@@ -19,3 +19,18 @@ services:
       - ${VUE_VITE_DEV:-3000}:5173
     # コンテナを正常終了するのを防ぐ
     tty: true
+  # ビルドファイルを試す用の WEBサーバー
+  web:
+    # 管理コンテナ名
+    container_name: ${APP_NAME}-web
+    # Dockerファイルにて 定義
+    build: ./docker/nginx
+    # 利用ポート
+    ports:
+      - ${WEB_PORT:-8080}:80
+    # 場所
+    volumes:
+      - ./web-server/:/var/www/html
+    # コマンド
+    # defaut.conf内容書き換え
+    command: /bin/sh -c "envsubst < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"

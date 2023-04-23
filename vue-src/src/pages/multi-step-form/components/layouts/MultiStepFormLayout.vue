@@ -12,7 +12,7 @@ type Props = {
     step?: number, // 対応したStep数
     title: string, // フォームタイトル
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {step: 1});
 // 発火イベント
 const emits = defineEmits(['click-previous', 'submit', 'submit-invalid']);
 
@@ -21,24 +21,24 @@ const store = useMultiStepForm();
 // 画面表示 フォームタイトル
 const title = computed(() => props.step ? `Step${props.step}: ${props.title ?? '設問'}` : props.title);
 // 現在のフォームの値
-const form = reactive(store.state);
+let form = reactive(store.state); // v-modelの内容を代入で書き換える？ということらしいので letに
 
 // 戻る クリック
-const onClickPrevious = (e) => {
+const onClickPrevious = () => {
     // グローバルストアに経過保存
     store.updateForm(form);
     // クリックイベント発火
-    emits('click-previous', e);
+    emits('click-previous', form);
 }
 // 正常 submit
-const onSubmit = (e) => {
+const onSubmit = (_data: any) => {
     // グローバルストアに経過保存
-    store.updateForm(e);
+    store.updateForm(_data);
     // イベント発火
-    emits('submit', ...arguments);
+    emits('submit', form);
 }
 // エラー submit
-const onSubmitInvalid = () => emits('submit-invalid', ...arguments);
+const onSubmitInvalid = () => emits('submit-invalid', form);
 </script>
 <template>
     <!-- マルチステップ フォーム レイアウト -->

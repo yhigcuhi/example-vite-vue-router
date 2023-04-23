@@ -1,0 +1,25 @@
+# nginx の設定ファイル
+server {
+  # port 80
+  listen 80;
+
+  # log
+  access_log /var/log/nginx/access.log;
+  error_log /var/log/nginx/error.log;
+
+  # 共通ヘッダー: セキュリティ対策
+  include /etc/nginx/conf.d/security/*.conf;
+
+  #ドキュメントルートの設定
+  root  /var/www/html/public;
+  index index.html index.htm;
+
+  # 文字コード
+  charset utf-8;
+
+  error_page   500 502 503 504  /50x.html;
+
+  location = /50x.html {
+      root   /usr/share/nginx/html;
+  }
+}
